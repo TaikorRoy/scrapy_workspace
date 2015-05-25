@@ -8,8 +8,10 @@ import json
 import codecs
 
 class TutorialPipeline(object):
+    json_file_name = 'MianBuJingHua.json'
+
     def __init__(self):
-        self.file = codecs.open('MianBuJingHua.json', 'wb', encoding='utf-8')
+        self.file = codecs.open(TutorialPipeline.json_file_name, 'wb', encoding='utf-8')
 
     def process_item(self, item, spider):
         line = json.dumps(dict(item))
@@ -19,3 +21,14 @@ class TutorialPipeline(object):
         line = line.replace('}', '},')
         self.file.write(line.decode("unicode_escape"))
         return item
+
+    def close_spider(self, spider):
+        """
+        self.file.close()
+        with open(TutorialPipeline.json_file_name, 'r', encoding='utf-8') as f:
+            s = f.read()
+            s.rstrip(',')
+            s = '[' + s + ']'
+        with open('MianBuJingHua.json', 'r', encoding='utf-8') as f:
+            f.write(s)
+        """

@@ -3,11 +3,16 @@ import scrapy
 from tutorial.items import TutorialItem
 
 
-class TutorialSpider(scrapy.Spider):
-    name = "tutorial"
-    allowed_domains = ["sephora.cn"]
+class ProductVolumeSpider(scrapy.Spider):
+    name = "volume"
+    allowed_domains = [""]
     start_urls = (
         'http://localhost/%E5%8C%96%E5%A6%86%E5%93%81%E7%94%B5%E5%95%86/%E9%9D%A2%E9%83%A8%E7%B2%BE%E5%8D%8E%E4%BA%A7%E5%93%81-%E9%9D%A2%E9%83%A8%E6%8A%A4%E7%90%86%E6%AD%A3%E5%93%81-%E4%B8%9D%E8%8A%99%E5%85%B0SEPHORA%E5%8C%96%E5%A6%86%E5%93%81.html',
+    )
+
+    rules = (
+        # Extract links matching 'item.php' and parse them with the spider's method parse_item
+        Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
     )
 
     def parse(self, response):
