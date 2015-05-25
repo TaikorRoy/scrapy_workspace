@@ -8,7 +8,7 @@ import json
 import codecs
 
 class TutorialPipeline(object):
-    json_file_name = 'MianBuJingHua.json'
+    json_file_name = r'C:\workspace\化妆品电商\job_List\MianBuJingHua.json'.decode('utf-8')
 
     def __init__(self):
         self.file = codecs.open(TutorialPipeline.json_file_name, 'wb', encoding='utf-8')
