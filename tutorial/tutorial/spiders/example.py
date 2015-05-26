@@ -2,21 +2,13 @@
 import scrapy
 from tutorial.items import TutorialItem
 
-
-def obtain_job_list(file):
-    file = file.decode('utf-8')
-    with open(file, 'r') as f:
-        lines = f.readlines()
-        lines = tuple(lines)
-        return lines
-
-
 class TutorialSpider(scrapy.Spider):
-    name = "tutorial"
+    name = "sephora"
     allowed_domains = ["sephora.cn"]
-    job_list = r'C:\workspace\化妆品电商\job_List\job_list.txt'
 
-    start_urls = obtain_job_list(job_list)
+    start_urls = (
+        'http://localhost/%E5%8C%96%E5%A6%86%E5%93%81%E7%94%B5%E5%95%86/%E9%9D%A2%E9%83%A8%E7%B2%BE%E5%8D%8E%E4%BA%A7%E5%93%81-%E9%9D%A2%E9%83%A8%E6%8A%A4%E7%90%86%E6%AD%A3%E5%93%81-%E4%B8%9D%E8%8A%99%E5%85%B0SEPHORA%E5%8C%96%E5%A6%86%E5%93%81.html',
+    )
 
     def parse(self, response):
         base_xpath = "/html/body/div[@id='main']/div[@class='spriteLine clearFix']/div[@id='contentRight']/div[@id='globalFilterFacetProductDIV']/div[@id='rightCategoryFilterResultDiv']/div[@class='productList productBox cagegoryList mt20 mMt10 clearFix']"
